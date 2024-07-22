@@ -5,6 +5,9 @@ import msgIcon from './assets/message.svg';
 import home from './assets/home.svg';
 import saved from './assets/bookmark.svg';
 import rocket from './assets/rocket.svg';
+import sendBtn from './assets/send.svg';
+import userIcon from './assets/user1.png';
+import gptImgLogo from './assets/chatgptLogo.png';
 
 function App() {
   return (
@@ -47,9 +50,39 @@ function App() {
           </div>
         </div>
       </div>
-      <div className='main'></div>
+      <div className='main'>
+        <div className='chats'>
+          <div className='chat'>
+            <img className='chatImg' src={userIcon} alt='' />
+            <p className='txt'>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi
+              nostrum sequi facere dolorem cumque. Ut possimus incidunt ad optio
+              autem.
+            </p>
+          </div>
+          <div className='chat bot'>
+            <img className='chatImg' src={gptImgLogo} alt='' />
+            <p className='txt'>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi
+              nostrum sequi facere dolorem cumque. Ut possimus incidunt ad optio
+              autem.
+            </p>
+          </div>
+        </div>
+        <div className='chatFooter'>
+          <div className='inp'>
+            <input type='text' placeholder='Send a Message...' />
+            <button className='send'>
+              <img src={sendBtn} alt='Send' />
+            </button>
+          </div>
+          <p>
+            GIFtBot may produce inaccurate information about people, places, or
+            facts. GIFtBot July 23 Version
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
-
 export default App;
