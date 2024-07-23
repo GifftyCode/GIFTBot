@@ -8,8 +8,21 @@ import rocket from './assets/rocket.svg';
 import sendBtn from './assets/send.svg';
 import userIcon from './assets/user1.png';
 import gptImgLogo from './assets/chatgptLogo.png';
+import { sendMsgToOpenAI } from './openai';
+import { useState } from 'react';
 
 function App() {
+  const [input, setInput] = useState('');
+
+  const handleSend = async () => {
+    try {
+      const res = await sendMsgToOpenAI(input);
+      console.log(res);
+    } catch (error) {
+      console.error('Error sending message to OpenAI:', error);
+    }
+  };
+
   return (
     <div className='App'>
       <div className='sideBar'>
@@ -18,7 +31,6 @@ function App() {
             <img src={gptLogo} alt='logo' className='logo' />
             <span className='brand'>GIFtBot</span>
           </div>
-
           <button className='midBtn'>
             <img src={addBtn} alt='new chat' className='addBtn' />
             New Chat
@@ -26,12 +38,11 @@ function App() {
           <div className='upperSideBottom'>
             <button className='query'>
               <img src={msgIcon} alt='query' />
-              What is Programming ?
+              What is Programming?
             </button>
-
             <button className='query'>
               <img src={msgIcon} alt='query' />
-              How to use an API ?
+              How to use an API?
             </button>
           </div>
         </div>
@@ -71,8 +82,13 @@ function App() {
         </div>
         <div className='chatFooter'>
           <div className='inp'>
-            <input type='text' placeholder='Send a Message...' />
-            <button className='send'>
+            <input
+              type='text'
+              placeholder='Send a Message...'
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button className='send' onClick={handleSend}>
               <img src={sendBtn} alt='Send' />
             </button>
           </div>
@@ -85,4 +101,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
