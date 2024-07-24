@@ -31,28 +31,43 @@ function App() {
     setInput('');
     setMessages([...messages, { text, isBot: false }]);
 
-    const res = await sendMsgToOpenAI(text);
-    setMessages([
-      ...messages,
-      { text, isBot: false },
-      { text: res, isBot: true },
-    ]);
+    try {
+      const res = await sendMsgToOpenAI(text);
+      setMessages([
+        ...messages,
+        { text, isBot: false },
+        { text: res, isBot: true },
+      ]);
+    } catch (error) {
+      setMessages([
+        ...messages,
+        { text, isBot: false },
+        { text: 'Sorry, something went wrong.', isBot: true },
+      ]);
+    }
   };
 
   const handleEnter = async (e) => {
     if (e.key === 'Enter') await handleSend();
   };
-
   const handleQuery = async (e) => {
     const text = e.target.value;
     setMessages([...messages, { text, isBot: false }]);
 
-    const res = await sendMsgToOpenAI(text);
-    setMessages([
-      ...messages,
-      { text, isBot: false },
-      { text: res, isBot: true },
-    ]);
+    try {
+      const res = await sendMsgToOpenAI(text);
+      setMessages([
+        ...messages,
+        { text, isBot: false },
+        { text: res, isBot: true },
+      ]);
+    } catch (error) {
+      setMessages([
+        ...messages,
+        { text, isBot: false },
+        { text: 'Sorry, something went wrong.', isBot: true },
+      ]);
+    }
   };
 
   return (
